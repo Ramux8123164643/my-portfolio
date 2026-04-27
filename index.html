@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ram Biradar – Senior UX Designer</title>
+    <style>
+        /* ─── Reset ─── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ─── Custom Cursor ─── */
+        * { cursor: none !important; }
+
+        #cursor-dot {
+            position: fixed;
+            top: 0; left: 0;
+            width: 10px; height: 10px;
+            background: #1e3a5f;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: width 0.15s, height 0.15s, background 0.2s;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            top: 0; left: 0;
+            width: 36px; height: 36px;
+            border: 2px solid rgba(30, 58, 95, 0.45);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            transition: width 0.25s ease, height 0.25s ease, border-color 0.25s, background 0.25s;
+        }
+
+        body.cursor-hover #cursor-dot  { width: 6px; height: 6px; background: #6366f1; }
+        body.cursor-hover #cursor-ring { width: 52px; height: 52px; border-color: #6366f1; background: rgba(99,102,241,0.08); }
+        body.cursor-text  #cursor-dot  { width: 4px; height: 28px; border-radius: 2px; background: #1e3a5f; }
+        body.cursor-text  #cursor-ring { width: 4px; height: 28px; border-radius: 2px; border-color: transparent; }
+
+        /* ─── Base ─── */
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #fff;
+            color: #1f2937;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ─── Header ─── */
+        #site-header {
+            padding: 22px 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(8px);
+            z-index: 500;
+            transition: box-shadow 0.3s;
+        }
+
+        #site-header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.07); }
+
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+
+        .logo {
+            display: flex; align-items: center; gap: 9px;
+            text-decoration: none; color: #1f2937;
+        }
+
+        .logo-text { font-weight: 600; font-size: 15px; letter-spacing: -0.01em; }
+
+        nav { display: flex; align-items: center; gap: 28px; }
+
+        .nav-link {
+            font-size: 14px; color: #555; text-decoration: none;
+            position: relative; padding-bottom: 2px;
+            transition: color 0.2s;
+        }
+
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -2px; left: 0;
+            width: 0; height: 2px; background: #1e3a5f;
+            transition: width 0.25s ease;
+        }
+
+        .nav-link:hover, .nav-link.active { color: #1e3a5f; }
+        .nav-link.active::after, .nav-link:hover::after { width: 100%; }
+
+        .btn-touch {
+            background: #1e3a5f; color: #fff;
+            border: none; padding: 10px 22px;
+            border-radius: 24px; font-size: 14px; font-weight: 500;
+            position: relative; overflow: hidden;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+
+        .btn-touch::before {
+            content: '';
+            position: absolute; top: 50%; left: 50%;
+            width: 0; height: 0;
+            background: rgba(255,255,255,0.18);
+            border-radius: 50%;
+            transform: translate(-50%,-50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .btn-touch:hover { background: #2a4a7f; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,58,95,0.25); }
+        .btn-touch:hover::before { width: 300px; height: 300px; }
+
+        /* ─── Page sections ─── */
+        .page { display: none; animation: pageFade 0.45s ease both; }
+        .page.active { display: block; }
+
+        @keyframes pageFade {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ════════════════════════════════
+           HOME
+        ════════════════════════════════ */
+
+        .header-wrap {
+    background-image: url("images/hero-colab.jpg");
+    background-size: cover;        /* fills entire area */
+    background-position: center;   /* keeps it centered */
+    background-repeat: no-repeat;
+    width: 100%;                   /* full width */
+    min-height: 740px;             /* adjust based on design */
+}
+
+        .hero { padding: 80px 0 60px; }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #f0f4ff; color: #1e3a5f;
+            font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; padding: 6px 14px; border-radius: 20px;
+            margin-bottom: 24px;
+        }
+
+        .hero-tag span { width: 6px; height: 6px; background: #6366f1; border-radius: 50%; animation: pulse 1.8s infinite; }
+
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.4)} }
+
+        .hero h1 {
+            font-size: 64px; font-weight: 400; color: #0a1f4d;
+            line-height: 1.1; 
+        }
+
+        .header-wrap p.intro {
+            margin-top: 20px;
+        }
+
+        .hero h1 em { font-style: normal; color: #b0b9c8; }
+
+        .hero-desc { font-size: 18px; color: #6b7280; font-weight: 300; max-width: 480px; line-height: 1.75; }
+
+        .hero-stats {
+            display: flex; gap: 40px; margin-top: 40px;
+        }
+
+        .stat-num { font-size: 32px; font-weight: 700; color: #0a1f4d; line-height: 1; }
+        .stat-label { font-size: 13px; color: #9ca3af; margin-top: 4px; }
+
+        .hero-image-col { position: relative; }
+
+        .hero-img {
+            width: 380px; height: 480px;
+            object-fit: cover; object-position: top;
+            border-radius: 24px;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.14);
+            display: block;
+        }
+
+        .hero-badge {
+            position: absolute; bottom: -16px; right: -16px;
+            width: 72px; height: 72px;
+            background: #d4e157; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+        /* Work */
+        .work { padding: 40px 0 80px; }
+
+        .section-eyebrow {
+            font-size: 13px; font-weight: 500; color: #9ca3af;
+            letter-spacing: 0.06em; text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .case-card {
+            border-radius: 24px; padding: 48px; margin-bottom: 28px;
+            display: block; text-decoration: none; overflow: hidden;
+            transition: transform 0.35s cubic-bezier(.25,.8,.25,1), box-shadow 0.35s;
+            position: relative;
+        }
+
+        .case-card:hover { transform: translateY(-6px); box-shadow: 0 20px 56px rgba(0,0,0,0.13); }
+
+        .case-card-1 { background: radial-gradient(circle at 21% -25%,#ed8b03 0,transparent 30%),radial-gradient(circle at 45% -48%,#d7a8fb 14%,#f4f2f0 42%); }
+        .case-card-2 { background: radial-gradient(circle,#fff 0%,#eff9ff 7%,#e0f3ff 100%); }
+        .case-card-3 { background: radial-gradient(circle,#ffefe8 0%,#ffd9cf 100%); }
+
+        .case-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+
+        .case-label { font-size: 13px; font-weight: 600; color: #666; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        .case-card h3 { font-size: 30px; font-weight: 700; color: #0a1f4d; margin-bottom: 12px; line-height: 1.25; }
+        .case-card p  { font-size: 15px; color: #555; margin-bottom: 24px; line-height: 1.65; }
+
+        .btn-case {
+            display: inline-block;
+            background: #1e3a5f; color: #fff;
+            border: none; padding: 12px 22px;
+            border-radius: 24px; font-size: 13px; font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-case:hover { background: #2a4a7f; transform: translateX(4px); }
+
+        .case-img { width: 100%; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+
+        /* ════════════════════════════════
+           ABOUT
+        ════════════════════════════════ */
+        .skill-icon, .process-icon {
+    background-color: rgb(255, 255, 255);
+    display: inline-block;
+    position: relative;
+    font-size: 48px;
+    width: 96px;
+    height: 96px;
+    line-height: 96px;
+    text-align: center;
+    border-radius: 96px;
+    transition: background-color 0.25s;
+    padding: 16px;
+}
+p.skill-title, p.process-title {
+    max-width: 99%;
+    color: rgb(51, 51, 51);
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0;
+    margin: 8px 0 0;
+    overflow: hidden;
+    font-weight: 400;
+}
+        .skill-content, .process-content {
+            box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px;
+            overflow: hidden;
+        }
+        @media screen and (min-width: 1024px) {
+    #skill-wrapper, #process-wrapper {
+        grid-template-columns: 33.33fr 33.33fr 33.33fr;
+    }
+}
+@media screen and (min-width: 768px) {
+    #skill-wrapper, #process-wrapper {
+        grid-template-columns: 33.33fr 33.33fr 33.33fr;
+    }
+}
+@media screen and (min-width: 420px) {
+    #skill-wrapper, #process-wrapper {
+        grid-template-columns: 50fr 50fr;
+    }
+}
+#skill-wrapper, #process-wrapper {
+    display: grid;
+    grid-template-columns: 30fr 30fr 30fr;
+    grid-gap: 30px;
+    align-items: center;
+}
+        .about-page { padding: 64px 0 80px; }
+
+        .about-hero {
+            display: flex; justify-content: space-between;
+            align-items: flex-start; gap: 48px;
+            margin-bottom: 80px;
+        }
+
+        .about-hero-text h1 {
+            color: #0a1f4d;
+        }
+
+        .about-location { font-size: 24px; color: #9ca3af; }
+
+        .about-photos { display: flex; gap: 14px; flex-shrink: 0; }
+
+        .about-photos img {
+            height: 260px; object-fit: cover; border-radius: 14px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+
+        .about-photos img:hover { transform: scale(1.03); box-shadow: 0 20px 48px rgba(0,0,0,0.16); }
+        .about-photos img:first-child { width: 300px; }
+        .about-photos img:last-child  { width: 190px; }
+
+        .about-grid { display: grid; grid-template-columns: 220px 1fr; gap: 64px; }
+
+        .about-section { margin-bottom: 72px; }
+
+        .about-label {
+            font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+            text-transform: uppercase; color: #9ca3af; padding-top: 6px;
+        }
+
+        .about-content h3 { font-size: 19px; font-weight: 700; color: #0a1f4d; margin-bottom: 3px; }
+        .about-content .date { font-size: 13px; color: #9ca3af; margin-bottom: 14px; }
+        .about-content p {     font-size: 16px; color: #484848; line-height: 1.75; margin-bottom: 14px; font-weight: 300; }
+
+        .exp-item { margin-bottom: 44px; padding-bottom: 44px; border-bottom: 1px solid #f3f4f6; }
+        .exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+        .edu-item { margin-bottom: 28px; }
+
+        /* ════════════════════════════════
+           PASSWORD
+        ════════════════════════════════ */
+        .password-page {
+            min-height: calc(100vh - 73px);
+            display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(ellipse at 60% 40%, #e0ecff 0%, #f8f9ff 60%, #fff 100%);
+        }
+
+        .pw-card {
+            background: #fff;
+            padding: 52px 48px;
+            border-radius: 20px;
+            box-shadow: 0 16px 48px rgba(30,58,95,0.12);
+            text-align: center;
+            width: 420px;
+            max-width: 90vw;
+            animation: pageFade 0.6s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pw-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 4px;
+        }
+
+        .pw-lock {
+            width: 56px; height: 56px;
+            background: #f0f4ff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 22px;
+        }
+
+        .pw-card h2 { font-size: 22px; font-weight: 700; color: #0a1f4d; margin-bottom: 8px; }
+
+        .pw-card p { font-size: 14px; color: #6b7280; margin-bottom: 28px; line-height: 1.6; }
+
+        .pw-input {
+            width: 100%; padding: 14px 16px;
+            font-size: 15px; border: 1.5px solid #e5e7eb;
+            border-radius: 10px; outline: none; margin-bottom: 14px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            text-align: center; letter-spacing: 0.15em;
+            font-family: inherit;
+        }
+
+        .pw-input:focus { border-color: #1e3a5f; box-shadow: 0 0 0 3px rgba(30,58,95,0.1); }
+        .pw-input.error { border-color: #ef4444; animation: shake 0.4s; box-shadow: 0 0 0 3px rgba(239,68,68,0.1); }
+
+        .pw-btn {
+            width: 100%; padding: 14px;
+            background: #1e3a5f; color: #fff;
+            border: none; border-radius: 10px;
+            font-size: 15px; font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .pw-btn:hover { background: #2a4a7f; transform: translateY(-2px); }
+
+        .pw-hint { font-size: 12px; color: #9ca3af; margin-top: 16px; }
+
+        @keyframes shake {
+            0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)}
+            40%{transform:translateX(8px)} 60%{transform:translateX(-5px)}
+            80%{transform:translateX(5px)}
+        }
+
+        /* ════════════════════════════════
+           GET IN TOUCH OVERLAY
+        ════════════════════════════════ */
+        #touch-overlay {
+            position: fixed; inset: 0;
+            background: rgba(10,31,77,0.55);
+            backdrop-filter: blur(6px);
+            z-index: 800;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.35s;
+        }
+
+        #touch-overlay.open { opacity: 1; pointer-events: all; }
+
+        .touch-modal {
+            background: #fff;
+            border-radius: 24px;
+            padding: 56px 52px;
+            width: 520px; max-width: 92vw;
+            position: relative;
+            transform: translateY(24px) scale(0.97);
+            transition: transform 0.35s cubic-bezier(.25,.8,.25,1);
+            overflow: hidden;
+        }
+
+        #touch-overlay.open .touch-modal { transform: translateY(0) scale(1); }
+
+        .touch-modal::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 4px;
+        }
+
+        .modal-close {
+            position: absolute; top: 20px; right: 20px;
+            width: 32px; height: 32px;
+            background: #f3f4f6; border: none; border-radius: 50%;
+            font-size: 16px; color: #555;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .modal-close:hover { background: #e5e7eb; }
+
+        .touch-modal h2 { font-size: 28px; font-weight: 700; color: #0a1f4d; margin-bottom: 6px; }
+        .touch-modal .sub { font-size: 15px; color: #6b7280; margin-bottom: 32px; }
+
+        .touch-links { display: flex; flex-direction: column; gap: 14px; }
+
+        .touch-link {
+            display: flex; align-items: center; gap: 16px;
+            padding: 18px 22px;
+            border: 1.5px solid #e5e7eb; border-radius: 14px;
+            text-decoration: none; color: #1f2937;
+            transition: border-color 0.25s, background 0.25s, transform 0.25s;
+        }
+
+        .touch-link:hover { border-color: #1e3a5f; background: #f0f4ff; transform: translateX(4px); }
+
+        .touch-link-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; flex-shrink: 0;
+        }
+        .touch-link-icon img {
+        width: 25px;
+        }
+        .touch-link-icon.email { background: #c7f8fe; }
+        .touch-link-icon.linkedin { background: #dbeafe; }
+        .touch-link-icon.behance { background: #ede9fe; }
+
+        .touch-link-title { font-size: 14px; font-weight: 600; color: #0a1f4d; }
+        .touch-link-value { font-size: 13px; color: #6b7280; margin-top: 1px; }
+
+        .touch-link-arrow { margin-left: auto; color: #9ca3af; font-size: 18px; transition: transform 0.2s; }
+        .touch-link:hover .touch-link-arrow { transform: translateX(4px); color: #1e3a5f; }
+
+        /* ─── Footer ─── */
+        .site-footer { padding: 52px 0; border-top: 1px solid #f0f0f0; }
+
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+
+        .footer-copy { font-size: 13px; color: #9ca3af; }
+
+        .social-row { display: flex; gap: 10px; }
+
+        .social-btn {
+            width: 38px; height: 38px; background: #1e3a5f;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            transition: background 0.3s, transform 0.25s;
+            text-decoration: none;
+        }
+
+        .social-btn:hover { background: #2a4a7f; transform: translateY(-3px); }
+        .social-btn svg { width: 28px; height: 18px; fill: white; }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+            .hero-img { width: 100%; height: 320px; }
+            .about-hero { flex-direction: column; }
+            .about-grid { grid-template-columns: 1fr; gap: 16px; }
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 40px; }
+            .case-inner { grid-template-columns: 1fr; }
+            .about-hero-text h1 { font-size: 48px; }
+            .about-photos img:last-child { display: none; }
+            .about-photos img:first-child { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- ─── Header ─── -->
+<header id="site-header">
+    <div class="container">
+        <div class="header-inner">
+            <a class="logo" onclick="showPage('home'); return false;" href="#">
+                <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="30" height="30" fill="#0f1f45"/>
+                    <rect x="5" y="5" width="8" height="20" fill="#fff"/>
+                    <rect x="5" y="5" width="13" height="2.5" fill="#fff"/>
+                    <rect x="5" y="13" width="11" height="2.5" fill="#fff"/>
+                    <polygon points="13,15.5 19,25 15.5,25 10,15.5" fill="#fff"/>
+                    <rect x="21" y="5" width="4" height="20" fill="#6366f1"/>
+                </svg>
+                <span class="logo-text">Ram Biradar</span>
+            </a>
+            <nav>
+                <a class="nav-link active" id="nav-home" onclick="showPage('home'); return false;" href="#">Home</a>
+                <a class="nav-link" id="nav-about" onclick="showPage('about'); return false;" href="#">About</a>
+                <button class="btn-touch" onclick="openTouch()">Get in touch</button>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- ════════════════════════════
+     HOME
+════════════════════════════ -->
+<div id="page-home" class="page active">
+
+    <section class="hero">
+        <div class="container">
+            <div class="header-wrap">
+              </div>
+        </div>
+    </section>
+
+    <section class="work">
+        <div class="container">
+            <p class="section-eyebrow">← Work / Case Studies</p>
+
+            <a href="#" onclick="showPage('password'); return false;" class="case-card case-card-1">
+                <div class="case-inner">
+                    <div>
+                        <p class="case-label">Biotechnology</p>
+                        <h3>Illumina KnowledgeFusion R&amp;D</h3>
+                        <p>Designing a secure GenAI chat experience for enterprise knowledge management.</p>
+                        <span class="btn-case">View case study →</span>
+                    </div>
+                    <div>
+                        <img src="images/Casestudy1-BannerMain.jpg" alt="Case Study 1" class="case-img">
+                    </div>
+                </div>
+            </a>
+
+            <a href="case-study-photoapp.html" class="case-card case-card-2">
+                <div class="case-inner">
+                    <div>
+                        <p class="case-label">Retailer App</p>
+                        <h3>Spencer Retailer App</h3>
+                        <p>Streamlining approvals across roles to reduce delays and improve decision-making.</p>
+                        <span class="btn-case">View case study →</span>
+                    </div>
+                    <div>
+                        <img src="images/PhotoSub-ClipBlue.jpg" alt="Case Study 2" class="case-img">
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" onclick="showPage('password'); return false;" class="case-card case-card-3">
+                <div class="case-inner">
+                    <div>
+                        <p class="case-label">Insurance</p>
+                        <h3>Underwriter Performance Dashboard</h3>
+                        <p>Track requests, manage submissions, and monitor progress in one place.</p>
+                        <span class="btn-case">View case study →</span>
+                    </div>
+                    <div>
+                        <img src="images/InsurenceClip.jpg" alt="Case Study 2" class="case-img">
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- ════════════════════════════
+     ABOUT
+════════════════════════════ -->
+<div id="page-about" class="page">
+    <div class="about-page">
+        <div class="container">
+
+            <div class="about-hero">
+                <div class="about-hero-text">
+                    <h1>Hi there, I am Ram Biradar</h1>
+                    <p>
+                        A product designer with a strategic mindset, based out of India
+                        <span role="img">🇮🇳</span>
+                    </p>
+                </div>
+                <div class="about-photos">
+                    <img src="images/AboutMeFirst.jpg" alt="About Me" class="case-img">
+                    <img src="images/Ram-Profile.jpg" alt="About Me" class="case-img">
+                </div>
+            </div>
+
+            <!-- About -->
+            <div class="about-section">
+                <div class="about-grid">
+                    <div class="about-label">Little bit about me</div>
+                    <div class="about-content">
+                        <p class="about-body">Hi there! If you're reading this, you probably want to know what drives my work. To me, every element of a design should be intelligent and backed by clear logic — an imaginative rush that also makes sense.</p>
+                        <p class="about-body">I started my career as a Graphics Designer after completing my Bachelor's in Computer Application. A deep curiosity about design and a pull toward product leadership led me to transition into full-time design roles. That single shift has defined everything since: making technology more accessible and enjoyable for everyone.</p>
+                        <p class="about-body">My work is an extension of my identity — both my art and my discipline. I treat my team, clients, and users with the same sincerity I bring to every pixel and decision.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My experience -->
+            <div class="about-section">
+                <div class="about-grid">
+                    <div class="about-label">My experience</div>
+                    <div class="about-content">
+                        <p class="about-body">With over 10+ years of experience in creating design solutions for web, mobile and desktop apps, and B2B SaaS based products, I excel at the intersection of strategy and execution. My core strengths lie in Product/UX Design and Product Management, where I translate complex user needs and business goals into intuitive, impactful solutions.</p>
+                        <p class="about-body">I am skilled in all aspects of the design process, from foundational Research & Data Analysis that drives key decisions to structuring the digital experience through robust Information Architecture. This is complemented by my expertise in creating and maintaining Design Systems & Styleguides, ensuring consistency, scalability, and efficiency across products.</p>
+                        <p class="about-body">Beyond the technical skill set, my leadership abilities are defined by fostering strong Cross-team Collaboration, acting as a bridge between design, engineering, and product teams.</p>
+                        <p class="about-body">I am committed to Team Motivation and Guidance, empowering designers to grow, innovate, and deliver their best work, ultimately leading to products that not only meet user expectations but also drive significant business growth.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About -->
+            <div class="about-section">
+                <div class="about-grid">
+                    <div class="about-label">Glimpse of my skills.</div>
+                    <div class="about-content">
+                        <p class="about-body">My skills reflect a journey of continuous learning and proactive growth. I actively pursue new challenges, embrace emerging technologies, and seek opportunities to expand my expertise and impact.</p>
+                        <div id="skill-wrapper">
+                            <div class="skill" data-color="#0ACF83">
+                              <div class="skill-content">
+                                <span class="skill-icon">
+                                  <img src="images/skills/figma.svg" width="100%" height="100%">
+                                </span>
+                                <p class="skill-title" style="color: rgb(51, 51, 51);">Figma</p>
+                                <span class="progress progress-total" style="background-color: #0ACF83"></span>
+                                <span class="progress progress-level" style="background-color: rgb(10, 207, 131); width: 0px;"></span>
+                              </div>
+                            </div>
+                            <div class="skill" data-color="#EC6C00">
+                                <div class="skill-content">
+                                  <span class="skill-icon">
+                                    <img src="images/skills/sketch.svg" width="100%" height="100%">
+                                  </span>
+                                  <p class="skill-title" style="color: rgb(51, 51, 51);">Sketch</p>
+                                  <span class="progress progress-total" style="background-color: #EC6C00"></span>
+                                  <span class="progress progress-level" style="background-color: rgb(236, 108, 0); width: 0px;"></span>
+                                </div>
+                              </div>
+                            <div class="skill" data-color="#EB56BD">
+                                <div class="skill-content">
+                                  <span class="skill-icon">
+                                    <img src="images/skills/Miro.svg" width="100%" height="100%">
+                                  </span>
+                                  <p class="skill-title" style="color: rgb(51, 51, 51);">Miro</p>
+                                  <span class="progress progress-total" style="background-color: #EB56BD"></span>
+                                  <span class="progress progress-level" style="background-color: rgb(235, 86, 189); width: 0px;"></span>
+                                </div>
+                              </div>
+                            <div class="skill" data-color="#EC6C00">
+                              <div class="skill-content">
+                                <span class="skill-icon">
+                                  <img src="images/skills/google-analytics.svg" width="100%" height="100%">
+                                </span>
+                                <p class="skill-title" style="color: rgb(51, 51, 51);">Google Analytics</p>
+                                <span class="progress progress-total" style="background-color: #EC6C00"></span>
+                                <span class="progress progress-level" style="background-color: rgb(236, 108, 0); width: 0px;"></span>
+                              </div>
+                            </div>
+                            <div class="skill" data-color="#5028C0">
+                              <div class="skill-content">
+                                <span class="skill-icon">
+                                  <img src="images/skills/Claude.svg" width="100%" height="100%">
+                                </span>
+                                <p class="skill-title" style="color: rgb(51, 51, 51);">Claude ai</p>
+                                <span class="progress progress-total" style="background-color: #5028C0"></span>
+                                <span class="progress progress-level" style="background-color: rgb(80, 40, 192); width: 0px;"></span>
+                              </div>
+                            </div>
+                            <div class="skill" data-color="#000000">
+                              <div class="skill-content">
+                                <span class="skill-icon">
+                                  <img src="images/skills/chatgpt.svg" width="100%" height="100%">
+                                </span>
+                                <p class="skill-title" style="color: rgb(51, 51, 51);">ChatGPT</p>
+                                <span class="progress progress-total" style="background-color: #000000"></span>
+                                <span class="progress progress-level" style="background-color: rgb(0, 0, 0); width: 0px;"></span>
+                              </div>
+                            </div>
+                            <div class="skill" data-color="#9168C0">
+                              <div class="skill-content">
+                                <span class="skill-icon">
+                                  <img src="images/skills/GithubCopilot.svg" width="100%" height="100%">
+                                </span>
+                                <p class="skill-title" style="color: rgb(51, 51, 51);">Github Copilot</p>
+                                <span class="progress progress-total" style="background-color: #9168C0"></span>
+                                <span class="progress progress-level" style="background-color: rgb(145, 104, 192); width: 0px;"></span>
+                              </div>
+                            </div>
+                            <div class="skill" data-color="#FF7F18">
+                              <div class="skill-content">
+                                <span class="skill-icon">
+                                  <img src="images/skills/illustrator.svg" width="100%" height="100%">
+                                </span>
+                                <p class="skill-title" style="color: rgb(51, 51, 51);">Illustrator</p>
+                                <span class="progress progress-total" style="background-color: #FF7F18"></span>
+                                <span class="progress progress-level" style="background-color: rgb(255, 127, 24); width: 0px;"></span>
+                              </div>
+                            </div>
+                            <div class="skill" data-color="#0252CC">
+                              <div class="skill-content">
+                                <span class="skill-icon">
+                                  <img src="images/skills/jira.svg" width="100%" height="100%">
+                                </span>
+                                <p class="skill-title" style="color: rgb(51, 51, 51);">Jira</p>
+                                <span class="progress progress-total" style="background-color: #0252CC"></span>
+                                <span class="progress progress-level" style="background-color: rgb(2, 82, 204); width: 0px;"></span>
+                              </div>
+                            </div>
+                            <div class="skill" data-color="#4A194B">
+                              <div class="skill-content">
+                                <span class="skill-icon">
+                                  <img src="images/skills/slack.svg" width="100%" height="100%">
+                                </span>
+                                <p class="skill-title" style="color: rgb(51, 51, 51);">Slack</p>
+                                <span class="progress progress-total" style="background-color: #4A194B"></span>
+                                <span class="progress progress-level" style="background-color: rgb(74, 25, 75); width: 0px;"></span>
+                              </div>
+                            </div>
+                            <div class="skill" data-color="#1E7ACC">
+                              <div class="skill-content">
+                                <span class="skill-icon">
+                                  <img src="images/skills/vs-code.svg" width="100%" height="100%">
+                                </span>
+                                <p class="skill-title" style="color: rgb(51, 51, 51);">VS Code</p>
+                                <span class="progress progress-total" style="background-color: #1E7ACC"></span>
+                                <span class="progress progress-level" style="background-color: rgb(30, 122, 204); width: 0px;"></span>
+                              </div>
+                            </div>
+                            <div class="skill" data-color="#e44d26">
+                              <div class="skill-content">
+                                <span class="skill-icon">
+                                  <img src="images/skills/html5.svg" width="100%" height="100%">
+                                </span>
+                                <p class="skill-title" style="color: rgb(51, 51, 51);">HTML5</p>
+                                <span class="progress progress-total" style="background-color: #e44d26"></span>
+                                <span class="progress progress-level" style="background-color: rgb(228, 77, 38); width: 0px;"></span>
+                              </div>
+                            </div>
+                            <div class="skill" data-color="#264de4">
+                              <div class="skill-content">
+                                <span class="skill-icon">
+                                  <img src="images/skills/css3.svg" width="100%" height="100%">
+                                </span>
+                                <p class="skill-title" style="color: rgb(51, 51, 51);">CSS3</p>
+                                <span class="progress progress-total" style="background-color: #264de4"></span>
+                                <span class="progress progress-level" style="background-color: rgb(38, 77, 228); width: 0px;"></span>
+                              </div>
+                            </div>
+                            <div class="skill" data-color="#e4a126">
+                              <div class="skill-content">
+                                <span class="skill-icon">
+                                  <img src="images/skills/javascript.svg" width="100%" height="100%">
+                                </span>
+                                <p class="skill-title" style="color: rgb(51, 51, 51);">JavaScript</p>
+                                <span class="progress progress-total" style="background-color: #e4a126"></span>
+                                <span class="progress progress-level" style="background-color: rgb(228, 161, 38); width: 0px;"></span>
+                              </div>
+                            </div>
+                            <div class="skill" data-color="#00d8ff">
+                              <div class="skill-content">
+                                <span class="skill-icon">
+                                  <img src="images/skills/react.svg" width="100%" height="100%">
+                                </span>
+                                <p class="skill-title" style="color: rgb(51, 51, 51);">React</p>
+                                <span class="progress progress-total" style="background-color: #00d8ff"></span>
+                                <span class="progress progress-level" style="background-color: rgb(0, 216, 255); width: 0px;"></span>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience -->
+            <div class="about-section">
+                <div class="about-grid">
+                    <div class="about-label">My How I solve problems</div>
+                    <div class="about-content">
+                        <p class="about-body">I lead product design by creating solutions that empower people and businesses through technology. My approach is rooted in a unique blend of user-centric research and engineering principles, which allows me to transform initial ideas into impactful, data-backed products.</p>
+                        <div id="process-wrapper">
+                            <div class="process" data-color="#FF6334">
+                              <div class="process-content">
+                                <span class="process-icon">
+                                  <img src="images/process/why.png" width="100%" height="100%">
+                                </span>
+                                <p class="process-title" style="color: rgb(51, 51, 51);">Ask Why?</p>
+                              </div>
+                            </div>
+                            <div class="process" data-color="#A384E2">
+                              <div class="process-content">
+                                <span class="process-icon">
+                                  <img src="images/process/target-audience.png" width="100%" height="100%">
+                                </span>
+                                <p class="process-title" style="color: rgb(51, 51, 51);">Target Audience</p>
+                              </div>
+                            </div>
+                            <div class="process" data-color="#F84D2E">
+                              <div class="process-content">
+                                <span class="process-icon">
+                                  <img src="images/process/research.png" width="100%" height="100%">
+                                </span>
+                                <p class="process-title" style="color: rgb(51, 51, 51);">Lots of Research</p>
+                              </div>
+                            </div>
+                            <div class="process" data-color="#F7B239">
+                              <div class="process-content">
+                                <span class="process-icon">
+                                  <img src="images/process/brainstorming.png" width="100%" height="100%">
+                                </span>
+                                <p class="process-title" style="color: rgb(51, 51, 51);">Brainstorm Ideas</p>
+                              </div>
+                            </div>
+                            <div class="process" data-color="#3CAFCA">
+                              <div class="process-content">
+                                <span class="process-icon">
+                                  <img src="images/process/design.png" width="100%" height="100%">
+                                </span>
+                                <p class="process-title" style="color: rgb(51, 51, 51);">Data &amp; Design</p>
+                              </div>
+                            </div>
+                            <div class="process" data-color="#35F093">
+                              <div class="process-content">
+                                <span class="process-icon">
+                                  <img src="images/process/testing.png" width="100%" height="100%">
+                                </span>
+                                <p class="process-title" style="color: rgb(51, 51, 51);">Test &amp; Iterate</p>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════
+     PASSWORD
+════════════════════════════ -->
+<div id="page-password" class="page">
+    <div class="password-page">
+        <div class="pw-card">
+            <div class="pw-lock"><img src="images/LockKey.svg" width="50%" height="100%"></div>
+            <h2>This case study is confidential</h2>
+            <p>Please enter the password shared in my resume to continue.</p>
+            <input type="password" id="pw-input" class="pw-input" placeholder="• • • • • • • • •"
+                   onkeydown="if(event.key==='Enter')checkPassword()">
+            <button class="pw-btn" onclick="checkPassword()">Unlock <img src="images/right-arrow.svg" width="20%" height="100%"></button>
+            <p class="pw-hint">Hint: check the resume you received</p>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════
+     GET IN TOUCH OVERLAY
+════════════════════════════ -->
+<div id="touch-overlay" onclick="handleOverlayClick(event)">
+    <div class="touch-modal">
+        <button class="modal-close" onclick="closeTouch()">✕</button>
+        <h2>Let's work together</h2>
+        <p class="sub">Pick your preferred way to reach out</p>
+        <div class="touch-links">
+            <a href="mailto:ram.biradar69@gmail.com" class="touch-link">
+                <div class="touch-link-icon email"><img src="images/email.svg" width="100%" height="100%"></div>
+                <div>
+                    <div class="touch-link-title">Email</div>
+                    <div class="touch-link-value">ram.biradar69@gmail.com</div>
+                </div>
+                <div class="touch-link-arrow">→</div>
+            </a>
+            <a href="https://www.linkedin.com/in/rambiradar" target="_blank" class="touch-link">
+                <div class="touch-link-icon linkedin"><img src="images/linkedin.svg" width="100%" height="100%"></div>
+                <div>
+                    <div class="touch-link-title">LinkedIn</div>
+                    <div class="touch-link-value">linkedin.com/in/rambiradar</div>
+                </div>
+                <div class="touch-link-arrow">→</div>
+            </a>
+            <a href="https://www.behance.net/rambiradar123" target="_blank" class="touch-link">
+                <div class="touch-link-icon behance"><img src="images/Behancelogo.svg" width="100%" height="100%"></div>
+                <div>
+                    <div class="touch-link-title">Behance</div>
+                    <div class="touch-link-value">behance.net/rambiradar123</div>
+                </div>
+                <div class="touch-link-arrow">→</div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ─── Footer ─── -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-inner">
+            <span class="footer-copy">© 2026 Ram Biradar. All Rights Reserved.</span>
+            <div class="social-row">
+                <a href="https://www.linkedin.com/in/ram-biradar-9784b283" target="_blank" class="social-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                </a>
+                <a href="https://www.behance.net/rambiradar123" target="_blank" class="social-btn">
+                    <svg viewBox="0 0 20 20" fill="currentColor"><path d="M2 5h5.5c2.5 0 4 1.2 4 3 0 1.2-.6 2.1-1.6 2.5 1.4.4 2.2 1.5 2.2 2.9 0 2.2-1.8 3.6-4.6 3.6H2V5zm5.2 5.1c1.2 0 2-.6 2-1.6s-.7-1.5-2-1.5H4.2v3.1h3zm.2 5c1.4 0 2.2-.7 2.2-1.8s-.8-1.7-2.3-1.7H4.2v3.5h3.2zm8.8-7.9h3.8v1.2h-3.8V7.2zm1.9 2.1c-2.2 0-3.8 1.5-3.8 4s1.6 4 3.9 4c1.9 0 3.2-1 3.6-2.6h-1.8c-.2.7-.9 1.1-1.8 1.1-1.2 0-2-.7-2.1-2h5.8c.1-2.8-1.4-4.5-3.8-4.5zm-2 3.1c.2-1.2 1-1.8 2-1.8s1.7.6 1.9 1.8h-3.9z"/></svg>
+                </a>
+                <a href="mailto:ram.biradar69@gmail.com" class="social-btn">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="white" stroke-width="2"/><polyline points="3,7 12,13 21,7" fill="none" stroke="white" stroke-width="2"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+// ─── Custom Cursor ───
+const dot  = document.getElementById('cursor-dot');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+(function animCursor() {
+    rx += (mx - rx) * 0.14;
+    ry += (my - ry) * 0.14;
+    dot.style.left  = mx + 'px';
+    dot.style.top   = my + 'px';
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animCursor);
+})();
+
+document.querySelectorAll('a, button, .case-card, .nav-link, .logo').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+});
+
+document.querySelectorAll('input, textarea').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-text'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-text'));
+});
+
+// ─── Sticky header shadow ───
+window.addEventListener('scroll', () => {
+    document.getElementById('site-header').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// ─── Page navigation ───
+function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    // Nav states
+    document.querySelectorAll('.nav-link').forEach(a => a.classList.remove('active'));
+    const map = { home: 'nav-home', about: 'nav-about' };
+    if (map[name]) document.getElementById(map[name]).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ─── Password check ───
+function checkPassword() {
+    const input = document.getElementById('pw-input');
+    if (input.value === 'design123') {
+        input.classList.remove('error');
+        // Show case study page inline — or redirect as needed
+        window.location.href = 'case-study.html';
+    } else {
+        input.classList.remove('error');
+        void input.offsetWidth; // reflow to restart animation
+        input.classList.add('error');
+        input.value = '';
+        input.placeholder = 'Wrong password — try again';
+        setTimeout(() => { input.placeholder = '• • • • • • • • •'; }, 2000);
+    }
+}
+
+// ─── Get in touch modal ───
+function openTouch() {
+    document.getElementById('touch-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeTouch() {
+    document.getElementById('touch-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+    if (e.target === document.getElementById('touch-overlay')) closeTouch();
+}
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeTouch();
+});
+</script>
+</body>
+</html>
