@@ -1008,7 +1008,7 @@ function showPage(name) {
         const pwInput = document.getElementById('pw-input');
         pwInput.value = '';
         pwInput.classList.remove('error');
-        pwInput.placeholder = '• • • • • • • • •';
+        pwInput.placeholder = '';
         setTimeout(() => pwInput.focus(), 100);
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1033,7 +1033,7 @@ function checkPassword() {
         input.classList.add('error');
         input.value = '';
         input.placeholder = 'Wrong password — try again';
-        setTimeout(() => { input.placeholder = '• • • • • • • • •'; }, 2000);
+        setTimeout(() => { input.placeholder = ''; }, 2000);
     }
 }
 
