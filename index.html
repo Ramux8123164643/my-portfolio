@@ -571,7 +571,7 @@ p.skill-title, p.process-title {
         <div class="container">
             <p class="section-eyebrow">← Work / Case Studies</p>
 
-            <a href="#" onclick="showPage('password'); return false;" class="case-card case-card-1">
+            <a href="#" onclick="pendingStudy='case-study.html'; showPage('password'); return false;" class="case-card case-card-1">
                 <div class="case-inner">
                     <div>
                         <p class="case-label">Biotechnology</p>
@@ -585,7 +585,7 @@ p.skill-title, p.process-title {
                 </div>
             </a>
 
-            <a href="case-study-photoapp.html" class="case-card case-card-2">
+            <a href="#" onclick="pendingStudy='case-study-photoapp.html'; showPage('password'); return false;" class="case-card case-card-2">
                 <div class="case-inner">
                     <div>
                         <p class="case-label">Retailer App</p>
@@ -599,7 +599,7 @@ p.skill-title, p.process-title {
                 </div>
             </a>
 
-            <a href="#" onclick="showPage('password'); return false;" class="case-card case-card-3">
+            <a href="#" onclick="pendingStudy='case-study.html'; showPage('password'); return false;" class="case-card case-card-3">
                 <div class="case-inner">
                     <div>
                         <p class="case-label">Insurance</p>
@@ -898,9 +898,9 @@ p.skill-title, p.process-title {
             <div class="pw-lock"><img src="images/LockKey.svg" width="50%" height="100%"></div>
             <h2>This case study is confidential</h2>
             <p>Please enter the password shared in my resume to continue.</p>
-            <input type="password" id="pw-input" class="pw-input" placeholder="• • • • • • • • •"
+            <input type="password" id="pw-input" class="pw-input" placeholder=""
                    onkeydown="if(event.key==='Enter')checkPassword()">
-            <button class="pw-btn" onclick="checkPassword()">Unlock <img src="images/right-arrow.svg" width="20%" height="100%"></button>
+            <button class="pw-btn" onclick="checkPassword()">Unlock</button>
             <p class="pw-hint">Hint: check the resume you received</p>
         </div>
     </div>
@@ -1008,12 +1008,13 @@ function showPage(name) {
 }
 
 // ─── Password check ───
+var pendingStudy = 'case-study.html';
+
 function checkPassword() {
     const input = document.getElementById('pw-input');
     if (input.value === 'design123') {
         input.classList.remove('error');
-        // Show case study page inline — or redirect as needed
-        window.location.href = 'case-study.html';
+        window.location.href = pendingStudy;
     } else {
         input.classList.remove('error');
         void input.offsetWidth; // reflow to restart animation
