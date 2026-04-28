@@ -571,7 +571,7 @@ p.skill-title, p.process-title {
         <div class="container">
             <p class="section-eyebrow">← Work / Case Studies</p>
 
-            <a href="#" onclick="pendingStudy='case-study.html'; showPage('password'); return false;" class="case-card case-card-1">
+            <a href="#" onclick="window.pendingStudy='case-study.html'; showPage('password'); return false;" class="case-card case-card-1">
                 <div class="case-inner">
                     <div>
                         <p class="case-label">Biotechnology</p>
@@ -585,7 +585,7 @@ p.skill-title, p.process-title {
                 </div>
             </a>
 
-            <a href="#" onclick="pendingStudy='case-study-photoapp.html'; showPage('password'); return false;" class="case-card case-card-2">
+            <a href="#" onclick="window.pendingStudy='case-study-photoapp.html'; showPage('password'); return false;" class="case-card case-card-2">
                 <div class="case-inner">
                     <div>
                         <p class="case-label">Retailer App</p>
@@ -599,7 +599,7 @@ p.skill-title, p.process-title {
                 </div>
             </a>
 
-            <a href="#" onclick="pendingStudy='case-study.html'; showPage('password'); return false;" class="case-card case-card-3">
+            <a href="#" onclick="window.pendingStudy='case-study.html'; showPage('password'); return false;" class="case-card case-card-3">
                 <div class="case-inner">
                     <div>
                         <p class="case-label">Insurance</p>
@@ -996,7 +996,6 @@ window.addEventListener('scroll', () => {
     document.getElementById('site-header').classList.toggle('scrolled', window.scrollY > 10);
 });
 
-// ─── Page navigation ───
 function showPage(name) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('page-' + name).classList.add('active');
@@ -1004,17 +1003,30 @@ function showPage(name) {
     document.querySelectorAll('.nav-link').forEach(a => a.classList.remove('active'));
     const map = { home: 'nav-home', about: 'nav-about' };
     if (map[name]) document.getElementById(map[name]).classList.add('active');
+    // Reset password field when navigating to password page
+    if (name === 'password') {
+        const pwInput = document.getElementById('pw-input');
+        pwInput.value = '';
+        pwInput.classList.remove('error');
+        pwInput.placeholder = '• • • • • • • • •';
+        setTimeout(() => pwInput.focus(), 100);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ─── Password check ───
-var pendingStudy = 'case-study.html';
+// ─── Handle return navigation from case study pages ───
+const _goto = sessionStorage.getItem('goto');
+if (_goto) { sessionStorage.removeItem('goto'); showPage(_goto); }
+
+window.pendingStudy = 'case-study.html';
 
 function checkPassword() {
     const input = document.getElementById('pw-input');
     if (input.value === 'design123') {
         input.classList.remove('error');
-        window.location.href = pendingStudy;
+        localStorage.setItem('auth', '1');
+        window.location.href = window.pendingStudy;
     } else {
         input.classList.remove('error');
         void input.offsetWidth; // reflow to restart animation
