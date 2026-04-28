@@ -176,9 +176,12 @@ if (!localStorage.getItem("auth")) {
             font-size: 16px; color: #4b5563; line-height: 1.8;
             padding-left: 22px; position: relative; margin-bottom: 8px;
         }
+        ul.Business-Goal li {
+            list-style: inside;
+        }
 
         .content-main ul li::before {
-            content: '•'; color: #1e3a5f; font-weight: 700;
+             color: #1e3a5f; font-weight: 700;
             position: absolute; left: 0;
         }
 
@@ -207,10 +210,14 @@ if (!localStorage.getItem("auth")) {
 
         /* Quote */
         .highlight-quote {
-            background: #0a1f4d; color: #fff;
-            padding: 36px 40px; border-radius: 16px;
-            margin: 36px 0; font-size: 18px; line-height: 1.8; font-style: italic;
-            border-left: 4px solid #6366f1;
+            background: #f8f9fa;
+            color: #4b5563;
+            padding: 31px 30px;
+            border-radius: 16px;
+            margin: 15px 0px 0px 0px;
+            font-size: 18px;
+            line-height: 1.8;
+            font-style: italic
         }
 
         /* Decision box */
@@ -220,7 +227,7 @@ if (!localStorage.getItem("auth")) {
         }
 
         .decision-label {
-            font-size: 11px; font-weight: 700; color: #6366f1;
+            font-size: 16px; font-weight: 700; color: #6366f1;
             text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px;
         }
 
@@ -426,7 +433,7 @@ if (!localStorage.getItem("auth")) {
             <div class="content-main">
                 <h1>Spencer's Retailer — Photo Submission App</h1>
                 <p>Spencer's Corp LLC is a North American retailer with over 600 stores in the U.S. and Canada. It specializes in novelty and gag gifts, clothing, band merchandise, and more. The company also owns the seasonal retailer Spirit Halloween.</p>
-                <p>The Photo Submission app streamlines the process of reviewing and approving storefront photos for new gift shop openings in a mall — replacing a fragmented, email-based workflow with a structured multi-role approval system across iOS, Android, and dashboard.</p>
+                <p>The Photo Submission app has been developed to optimize the review and approval process for storefront photos related to new gift shop openings within malls. It replaces a previously disjointed, email-based workflow with a streamlined, structured approval system that supports multiple roles and operates seamlessly across iOS, Android, and a web dashboard. This enhances coordination and efficiency in managing store openings.</p>
                 <div class="info-grid">
                     <div class="info-item">
                         <h4>My Role</h4>
@@ -462,52 +469,52 @@ if (!localStorage.getItem("auth")) {
                 <div style="display:grid; grid-template-columns: repeat(5,1fr); gap:10px; margin:28px 0;">
 
                     <div style="background:#1e3a5f; border-radius:12px; padding:20px 16px;">
-                        <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">01</div>
-                        <div style="font-size:14px; font-weight:700; color:#fff; margin-bottom:12px;">Discovery</div>
+                        <div style="font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">01</div>
+                        <div style="font-weight:700; color:#fff; margin-bottom:12px;">Discovery</div>
                         <ul style="list-style:none;padding:0;margin:0;">
-                            <li style="font-size:12px;color:rgba(255,255,255,0.7);padding-left:12px;position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>Business Goal</li>
-                            <li style="font-size:12px;color:rgba(255,255,255,0.7);padding-left:12px;position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>User Research</li>
-                            <li style="font-size:12px;color:rgba(255,255,255,0.7);padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>User Personas</li>
+                            <li style="  color:rgba(255,255,255,0.7);    position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>Business Goal</li>
+                            <li style="  color:rgba(255,255,255,0.7);    position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>User Research</li>
+                            <li style="  color:rgba(255,255,255,0.7);    position:relative;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>User Personas</li>
                         </ul>
                     </div>
 
                     <div style="background:#f0f4ff; border:1px solid #dce8f8; border-radius:12px; padding:20px 16px;">
-                        <div style="font-size:10px; font-weight:700; color:#7fa0cc; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">02</div>
-                        <div style="font-size:14px; font-weight:700; color:#1e3a5f; margin-bottom:12px;">Define</div>
+                        <div style="    font-weight:700; color:#7fa0cc; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">02</div>
+                        <div style="     font-weight:700; color:#1e3a5f; margin-bottom:12px;">Define</div>
                         <ul style="list-style:none;padding:0;margin:0;">
-                            <li style="font-size:12px;color:#555;padding-left:12px;position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:#7fa0cc;">→</span>Stakeholder Talks</li>
-                            <li style="font-size:12px;color:#555;padding-left:12px;position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:#7fa0cc;">→</span>Brainstorming</li>
-                            <li style="font-size:12px;color:#555;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:#7fa0cc;">→</span>Journey Mapping</li>
+                            <li style="  color:#555;    position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:#7fa0cc;">→</span>Stakeholder Talks</li>
+                            <li style="  color:#555;    position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:#7fa0cc;">→</span>Brainstorming</li>
+                            <li style="  color:#555;    position:relative;"><span style="position:absolute;left:0;color:#7fa0cc;">→</span>Journey Mapping</li>
                         </ul>
                     </div>
 
                     <div style="background:#1e3a5f; border-radius:12px; padding:20px 16px;">
-                        <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">03</div>
-                        <div style="font-size:14px; font-weight:700; color:#fff; margin-bottom:12px;">Ideation</div>
+                        <div style="    font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">03</div>
+                        <div style="     font-weight:700; color:#fff; margin-bottom:12px;">Ideation</div>
                         <ul style="list-style:none;padding:0;margin:0;">
-                            <li style="font-size:12px;color:rgba(255,255,255,0.7);padding-left:12px;position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>User Stories</li>
-                            <li style="font-size:12px;color:rgba(255,255,255,0.7);padding-left:12px;position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>User Flow</li>
-                            <li style="font-size:12px;color:rgba(255,255,255,0.7);padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>Initial Concepts</li>
+                            <li style="  color:rgba(255,255,255,0.7);    position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>User Stories</li>
+                            <li style="  color:rgba(255,255,255,0.7);    position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>User Flow</li>
+                            <li style="  color:rgba(255,255,255,0.7);    position:relative;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>Initial Concepts</li>
                         </ul>
                     </div>
 
                     <div style="background:#f0f4ff; border:1px solid #dce8f8; border-radius:12px; padding:20px 16px;">
-                        <div style="font-size:10px; font-weight:700; color:#7fa0cc; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">04</div>
-                        <div style="font-size:14px; font-weight:700; color:#1e3a5f; margin-bottom:12px;">Design</div>
+                        <div style="    font-weight:700; color:#7fa0cc; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">04</div>
+                        <div style="     font-weight:700; color:#1e3a5f; margin-bottom:12px;">Design</div>
                         <ul style="list-style:none;padding:0;margin:0;">
-                            <li style="font-size:12px;color:#555;padding-left:12px;position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:#7fa0cc;">→</span>Design System</li>
-                            <li style="font-size:12px;color:#555;padding-left:12px;position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:#7fa0cc;">→</span>Wireframes</li>
-                            <li style="font-size:12px;color:#555;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:#7fa0cc;">→</span>Hi-Fi Mockups</li>
+                            <li style="  color:#555;    position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:#7fa0cc;">→</span>Design System</li>
+                            <li style="  color:#555;    position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:#7fa0cc;">→</span>Wireframes</li>
+                            <li style="  color:#555;    position:relative;"><span style="position:absolute;left:0;color:#7fa0cc;">→</span>Hi-Fi Mockups</li>
                         </ul>
                     </div>
 
                     <div style="background:#1e3a5f; border-radius:12px; padding:20px 16px;">
-                        <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">05</div>
-                        <div style="font-size:14px; font-weight:700; color:#fff; margin-bottom:12px;">Testing</div>
+                        <div style="    font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">05</div>
+                        <div style="     font-weight:700; color:#fff; margin-bottom:12px;">Testing</div>
                         <ul style="list-style:none;padding:0;margin:0;">
-                            <li style="font-size:12px;color:rgba(255,255,255,0.7);padding-left:12px;position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>Final Screens</li>
-                            <li style="font-size:12px;color:rgba(255,255,255,0.7);padding-left:12px;position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>Usability Testing</li>
-                            <li style="font-size:12px;color:rgba(255,255,255,0.7);padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>Observations</li>
+                            <li style="  color:rgba(255,255,255,0.7);    position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>Final Screens</li>
+                            <li style="  color:rgba(255,255,255,0.7);    position:relative;margin-bottom:5px;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>Usability Testing</li>
+                            <li style="  color:rgba(255,255,255,0.7);    position:relative;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.35);">→</span>Observations</li>
                         </ul>
                     </div>
 
@@ -523,12 +530,12 @@ if (!localStorage.getItem("auth")) {
             <div class="content-main">
                 <h2>The Challenge</h2>
                 <h3>What was the problem?</h3>
-                <p>Before the Photo Submission app, setting up new gift shops in a mall involved a complicated manual process. Vendors emailed storefront photos that were then manually tracked by Admin users and forwarded through several approval stages — DSM users, Zone Managers, and HO users. This process was slow, error-prone, and caused frequent delays in store openings.</p>
+                <p>The problem before the Photo Submission app was that setting up new gift shops in malls involved a complicated and manual process. Vendors would email storefront photos, which Admin users had to manually track and then forward through multiple approval stages involving DSM users, Zone Managers, and HO users. This email-based workflow was slow, prone to errors, and frequently caused delays in store openings.</p>
                 <h3>What are we solving?</h3>
-                <p>With the Photo Submission app, the workflow is fully digitized. Admin users create and manage photo slots directly in the app. Vendors upload storefront photos, which flow through structured review by DSM users, Zone Managers, and HO users — with automated notifications and status tracking at every step.</p>
+                <p>By completely automating the process, the Photo Submission app avoids the errors of the prior manual approach. Within the app, photo submission slots can be created and managed by admin users. The app allows vendors to upload store front photos, which are then subjected to a systematic review process that involves Zone Managers, DSM users, and HO users. Approving store front photos for new gift shop openings is much faster, more accurate, and better coordinated through automated notifications and status tracking at every level, that ensure quick communication and transparency.</p>
                 <h3>Business Goal</h3>
                 <p>Streamline photo management and approval for new retail store setups — improving turnaround times, increasing vendor satisfaction, supporting timely store openings, and ultimately contributing to revenue growth and a stronger market presence.</p>
-                <ul>
+                <ul class="Business-Goal">
                         <li>Reduce delays caused by manual email-based photo submission</li>
                         <li>Provide clear role-based visibility into submission and approval status</li>
                         <li>Enable faster store openings through automated approval routing</li>
