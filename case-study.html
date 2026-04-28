@@ -204,10 +204,7 @@ if (!localStorage.getItem("auth")) {
             box-shadow: 0 4px 24px rgba(0,0,0,.1);
             transition: transform .4s, box-shadow .4s;
         }
-        .remove-boxshadow.large-image-section img {
-            box-shadow: unset;
-        }
-        
+
         .large-image-section img:hover { transform: scale(1.01); box-shadow: 0 12px 40px rgba(0,0,0,.14); }
 
         /* Quote */
@@ -668,8 +665,8 @@ if (!localStorage.getItem("auth")) {
                     <p>I tested the lo-fi structure with two stakeholders before moving to hi-fi. The key finding: users wanted to see the <strong>source of an answer before reading the answer</strong> — not after. I moved citations to sit adjacent to the response. This single structural change became the most important trust mechanism in the final design.</p>
                 </div>
 
-                <div class="large-image-section remove-boxshadow">
-                    <img src="images/Wireframe.png" alt="Wireframes">
+                <div class="large-image-section">
+                    <img src="images/Wireframe.jpg" alt="Wireframes">
                 </div>
             </div>
         </div>
@@ -691,7 +688,7 @@ if (!localStorage.getItem("auth")) {
                 <h3>Home Page</h3>
                 <p>After login, users land here. A centred search bar with optional Sources filter, mic for voice input, and attach for files or images. Recent Queries below give instant access to previous searches — no blank slate.</p>
                 <div class="large-image-section">
-                    <img src="images/homepage.jpg" alt="Home page">
+                    <img src="images/homepage-mockup.jpg" alt="Home page">
                 </div>
 
                 <h3>AI Response Detail Page</h3>
@@ -703,9 +700,7 @@ if (!localStorage.getItem("auth")) {
                 <h3>See the Experience in Action</h3>
                 <p>Field service engineers needed answers on-site on mobile. After validating the core web experience, I adapted the layout for mobile — collapsing the source selector into a bottom sheet, optimising touch targets, and reducing the AI response to its most actionable form.</p>
                 <div class="large-image-section">
-                    <video width="100%" controls="" autoplay="" muted="" loop="">
-                        <source src="images/videos/illumina-actual-app.mp4" type="video/mp4">
-                  </video>
+                    <img src="images/Responsepage.jpg" alt="Responsive design">
                 </div>
             </div>
         </div>
