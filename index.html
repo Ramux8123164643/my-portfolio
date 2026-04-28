@@ -571,7 +571,7 @@ p.skill-title, p.process-title {
         <div class="container">
             <p class="section-eyebrow">← Work / Case Studies</p>
 
-            <a href="#" onclick="window.pendingStudy='case-study.html'; showPage('password'); return false;" class="case-card case-card-1">
+            <a href="#" onclick="pendingStudy='case-study.html'; showPage('password'); return false;" class="case-card case-card-1">
                 <div class="case-inner">
                     <div>
                         <p class="case-label">Biotechnology</p>
@@ -585,7 +585,7 @@ p.skill-title, p.process-title {
                 </div>
             </a>
 
-            <a href="#" onclick="window.pendingStudy='case-study-photoapp.html'; showPage('password'); return false;" class="case-card case-card-2">
+            <a href="#" onclick="pendingStudy='case-study-photoapp.html'; showPage('password'); return false;" class="case-card case-card-2">
                 <div class="case-inner">
                     <div>
                         <p class="case-label">Retailer App</p>
@@ -1008,30 +1008,20 @@ function showPage(name) {
 }
 
 // ─── Password check ───
-window.pendingStudy = null;
+var pendingStudy = 'case-study.html';
 
 function checkPassword() {
     const input = document.getElementById('pw-input');
-
     if (input.value === 'design123') {
         input.classList.remove('error');
-
-        if (window.pendingStudy) {
-            window.location.href = window.pendingStudy;
-        } else {
-            alert("Something went wrong. Please try again.");
-        }
-
+        window.location.href = pendingStudy;
     } else {
         input.classList.remove('error');
-        void input.offsetWidth;
+        void input.offsetWidth; // reflow to restart animation
         input.classList.add('error');
         input.value = '';
         input.placeholder = 'Wrong password — try again';
-
-        setTimeout(() => {
-            input.placeholder = '• • • • • • • • •';
-        }, 2000);
+        setTimeout(() => { input.placeholder = '• • • • • • • • •'; }, 2000);
     }
 }
 
