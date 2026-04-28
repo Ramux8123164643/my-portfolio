@@ -571,7 +571,7 @@ p.skill-title, p.process-title {
         <div class="container">
             <p class="section-eyebrow">← Work / Case Studies</p>
 
-            <a href="#" onclick="pendingStudy='case-study.html'; showPage('password'); return false;" class="case-card case-card-1">
+            <a href="#" onclick="window.pendingStudy='case-study.html'; showPage('password'); return false;" class="case-card case-card-1">
                 <div class="case-inner">
                     <div>
                         <p class="case-label">Biotechnology</p>
@@ -585,7 +585,7 @@ p.skill-title, p.process-title {
                 </div>
             </a>
 
-            <a href="#" onclick="pendingStudy='case-study-photoapp.html'; showPage('password'); return false;" class="case-card case-card-2">
+            <a href="#" onclick="window.pendingStudy='case-study-photoapp.html'; showPage('password'); return false;" class="case-card case-card-2">
                 <div class="case-inner">
                     <div>
                         <p class="case-label">Retailer App</p>
@@ -1008,7 +1008,7 @@ function showPage(name) {
 }
 
 // ─── Password check ───
-var pendingStudy = null;
+window.pendingStudy = null;
 
 function checkPassword() {
     const input = document.getElementById('pw-input');
@@ -1016,8 +1016,8 @@ function checkPassword() {
     if (input.value === 'design123') {
         input.classList.remove('error');
 
-        if (pendingStudy) {
-            window.location.href = pendingStudy;
+        if (window.pendingStudy) {
+            window.location.href = window.pendingStudy;
         } else {
             alert("Something went wrong. Please try again.");
         }
